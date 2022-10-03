@@ -8,16 +8,28 @@ import datetime
 import time
 #Prieks zurnalesanas konfiguracijas
 import yaml
+import configparser
 
 from datetime import datetime
+from configparser import ConfigParser
 print('Asteroid processing service')
 
 # Initiating and reading config values
 print('Loading configuration from file')
 
+try:
+	config = ConfigParser()
+	config.read('config.ini')
+
+	nasa_api_key = config.get('nasa', 'api_key')
+	nasa_api_url = config.get('nasa', 'api_url')
+
+except:
+	print('')
+print('DONE')
+
 #Mana api atslega un majaslapa kurai ta ir 
-nasa_api_key = "i2qMFdo18iOVkYdJGNSvTBP1pc5dcg80IZWcekRe"
-nasa_api_url = "https://api.nasa.gov/neo/"
+
 
 # Dabu sodienas datumu
 dt = datetime.now()
@@ -60,7 +72,7 @@ if r.status_code == 200:
 							tmp_ast_diam_min = round(val['estimated_diameter']['kilometers']['estimated_diameter_min'], 3)
 							tmp_ast_diam_max = round(val['estimated_diameter']['kilometers']['estimated_diameter_max'], 3)
 						else:
-	`						#ja nav asteroidi kilometra diametra tad tiek iedotac citas vertibas
+							#ja nav asteroidi kilometra diametra tad tiek iedotac citas vertibas
 							tmp_ast_diam_min = -2
 							tmp_ast_diam_max = -2
 					else:
