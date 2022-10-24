@@ -14,6 +14,13 @@ assert os.path.isfile("config.ini") == True
 print("OK")
 print("----------")
 
+#Tests if configuration file is not empty
+print('Testing if config file is empty')
+config_file = 'config.ini'
+os.stat(config_file).st_size != 0
+print("OK")
+print("----------")
+
 # Opening the configuration file
 config = ConfigParser()
 config.read('config.ini')
