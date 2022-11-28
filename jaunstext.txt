@@ -1,1 +1,2 @@
 Jauns text, šis ir jauns feature.
+//šis tika pārbaudīts
